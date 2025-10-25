@@ -1,0 +1,40 @@
+services:
+  - type: web
+    name: ai-finance-backend
+    env: docker
+    plan: free
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+      - key: CLIENT_URL
+        value: https://ai-finance-frontend.onrender.com
+      - key: NODE_ENV
+        value: production
+    autoDeploy: true
+    dockerfilePath: ./backend/Dockerfile
+    buildCommand: npm run build
+
+  - type: web
+    name: ai-finance-frontend
+    env: docker
+    plan: free
+    envVars:
+      - key: VITE_API_URL
+        value: https://ai-finance-backend.onrender.com
+    autoDeploy: true
+    dockerfilePath: ./frontend/Dockerfile
+
+  - type: pserv
+    name: ai-finance-ml
+    env: docker
+    plan: free
+    autoDeploy: false
+    dockerfilePath: ./ml-service/Dockerfile

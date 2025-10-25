@@ -1,0 +1,13 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { formatCurrency, formatDate } from '../utils/formatters';
+export const AIInsights = ({ insight, loading = false, onRefresh, }) => {
+    if (loading) {
+        return (_jsxs("div", { className: "bg-gradient-to-r from-primary-600 to-primary-700 rounded-lg shadow p-6 text-white", children: [_jsx("h3", { className: "text-lg font-semibold mb-4", children: "\uD83E\uDD16 AI Insights" }), _jsxs("div", { className: "animate-pulse", children: [_jsx("div", { className: "h-4 bg-primary-500 rounded mb-2 w-3/4" }), _jsx("div", { className: "h-4 bg-primary-500 rounded mb-2 w-1/2" }), _jsx("div", { className: "h-4 bg-primary-500 rounded w-2/3" })] })] }));
+    }
+    if (!insight || !insight.insights) {
+        return (_jsxs("div", { className: "bg-gradient-to-r from-primary-600 to-primary-700 rounded-lg shadow p-6 text-white", children: [_jsx("h3", { className: "text-lg font-semibold mb-4", children: "\uD83E\uDD16 AI Insights" }), _jsx("p", { className: "text-primary-100", children: "No insights available yet. Upload transactions to get started." })] }));
+    }
+    // Handle case where summary might not exist (during initial load)
+    const hasSummary = insight.summary && insight.summary.totalSpend !== undefined;
+    return (_jsxs("div", { className: "bg-gradient-to-r from-primary-600 to-primary-700 rounded-lg shadow p-6 text-white", children: [_jsxs("div", { className: "flex justify-between items-center mb-4", children: [_jsx("h3", { className: "text-lg font-semibold", children: "\uD83E\uDD16 AI Insights" }), onRefresh && (_jsx("button", { onClick: onRefresh, className: "text-primary-100 hover:text-white text-sm", children: "\uD83D\uDD04 Refresh" }))] }), hasSummary && (_jsx("div", { className: "mb-4 p-3 bg-white bg-opacity-10 rounded-lg", children: _jsxs("div", { className: "grid grid-cols-3 gap-4 text-sm", children: [_jsxs("div", { children: [_jsx("div", { className: "text-primary-100", children: "Total Spend" }), _jsx("div", { className: "text-xl font-semibold", children: formatCurrency(insight.summary.totalSpend) })] }), _jsxs("div", { children: [_jsx("div", { className: "text-primary-100", children: "Monthly Avg" }), _jsx("div", { className: "text-xl font-semibold", children: formatCurrency(insight.summary.monthlyAverage) })] }), _jsxs("div", { children: [_jsx("div", { className: "text-primary-100", children: "Generated" }), _jsx("div", { className: "text-sm font-semibold", children: formatDate(insight.generatedAt) })] })] }) })), _jsx("div", { className: "prose prose-invert max-w-none text-sm", children: insight.insights.split('\n').map((line, index) => (_jsx("p", { className: "mb-2 text-primary-50", children: line }, index))) })] }));
+};

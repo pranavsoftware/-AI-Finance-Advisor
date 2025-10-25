@@ -1,0 +1,11 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { formatCurrency } from '../utils/formatters';
+export const TransactionTable = ({ transactions, onDelete, loading = false, }) => {
+    if (loading) {
+        return _jsx("div", { className: "text-center py-8", children: "Loading..." });
+    }
+    if (transactions.length === 0) {
+        return (_jsx("div", { className: "text-center py-12 text-gray-500", children: _jsx("p", { children: "No transactions yet. Upload a file to get started." }) }));
+    }
+    return (_jsx("div", { className: "overflow-x-auto", children: _jsxs("table", { className: "w-full", children: [_jsx("thead", { children: _jsxs("tr", { className: "border-b border-gray-200", children: [_jsx("th", { className: "px-6 py-3 text-left text-sm font-semibold text-gray-700", children: "Date" }), _jsx("th", { className: "px-6 py-3 text-left text-sm font-semibold text-gray-700", children: "Description" }), _jsx("th", { className: "px-6 py-3 text-left text-sm font-semibold text-gray-700", children: "Category" }), _jsx("th", { className: "px-6 py-3 text-right text-sm font-semibold text-gray-700", children: "Amount" }), _jsx("th", { className: "px-6 py-3 text-center text-sm font-semibold text-gray-700", children: "Action" })] }) }), _jsx("tbody", { children: transactions.map((transaction) => (_jsxs("tr", { className: "border-b border-gray-100 hover:bg-gray-50", children: [_jsx("td", { className: "px-6 py-4 text-sm text-gray-900", children: new Date(transaction.date).toLocaleDateString() }), _jsx("td", { className: "px-6 py-4 text-sm text-gray-900", children: transaction.description }), _jsx("td", { className: "px-6 py-4 text-sm", children: _jsx("span", { className: "px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800", children: transaction.category }) }), _jsx("td", { className: "px-6 py-4 text-sm font-medium text-right text-gray-900", children: formatCurrency(transaction.amount) }), _jsx("td", { className: "px-6 py-4 text-center", children: _jsx("button", { onClick: () => onDelete(transaction._id), className: "text-red-600 hover:text-red-800 text-sm font-medium", children: "Delete" }) })] }, transaction._id))) })] }) }));
+};

@@ -1,0 +1,56 @@
+services:
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ai-finance-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ENV=production
+      - PORT=8000
+      - MONGO_URI=mongodb://host.docker.internal:27017/ai-finance
+      - JWT_SECRET=your_super_secret_jwt_key_min_32_characters_long
+      - JWT_EXPIRY=7d
+      - GEMINI_API_KEY=AIzaSyDG9z0QwLxAV_1xczL-T4SXjgDRjb3uK1E
+      - CLIENT_URL=http://localhost:5173
+      - ML_SERVICE_URL=http://ml-service:5000
+      - LOG_LEVEL=info
+    volumes:
+      - ./backend/uploads:/app/uploads
+    networks:
+      - ai-finance-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  # ML Service
+  ml-service:
+    build:
+      context: ./ml-service
+      dockerfile: Dockerfile
+    container_name: ai-finance-ml
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    networks:
+      - ai-finance-network
+
+  # Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: ai-finance-frontend
+    restart: unless-stopped
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    networks:
+      - ai-finance-network
+
+networks:
+  ai-finance-network:
+    driver: bridge
