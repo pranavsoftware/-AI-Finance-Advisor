@@ -634,9 +634,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 If you encounter any issues or have questions:
-- 📧 Email: raybanpranav27@gmail.com
-- 🐛 Issues: [GitHub Issues](https://github.com/pranavsoftware/ai-finance-advisor/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/pranavsoftware/ai-finance-advisor/discussions)
+- 📧 Email: raybanpranav@gmail.com
 
 ---
 
