@@ -22,13 +22,13 @@
 
 ### Login Interface
 <div align="center">
-  <img src="docs/images/login.png" alt="Login Screen" width="800"/>
+  <img src="docs/Login.png" alt="Login Screen" width="800"/>
   <p><em>Secure authentication with modern UI design</em></p>
 </div>
 
 ### Dashboard Overview
 <div align="center">
-  <img src="docs/images/dashboard.png" alt="Dashboard" width="800"/>
+  <img src="docs/Dashboard.png" alt="Dashboard" width="800"/>
   <p><em>Comprehensive financial insights with AI-powered categorization</em></p>
 </div>
 
