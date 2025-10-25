@@ -28,7 +28,7 @@
 
 ### Dashboard Overview
 <div align="center">
-  <img src="docs/Dashboard.png" alt="Dashboard" width="800"/>
+  <img src="docs/dashboard.png" alt="Dashboard" width="800"/>
   <p><em>Comprehensive financial insights with AI-powered categorization</em></p>
 </div>
 
