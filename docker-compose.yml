@@ -14,7 +14,7 @@ services:
       - MONGO_URI=mongodb://host.docker.internal:27017/ai-finance
       - JWT_SECRET=your_super_secret_jwt_key_min_32_characters_long
       - JWT_EXPIRY=7d
-      - GEMINI_API_KEY=AIzaSyDG9z0QwLxAV_1xczL-T4SXjgDRjb3uK1E
+      - GEMINI_API_KEY=
       - CLIENT_URL=http://localhost:5173
       - ML_SERVICE_URL=http://ml-service:5000
       - LOG_LEVEL=info
